@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 
 //Step-3 write the listeners to take a letter and add to your word div
-let clickedLetter = ''
+let clickedLetter = '';
 a_button.addEventListener("click", (event) => {
     event.preventDefault();
     clickedLetter = a_button.value;
@@ -117,5 +117,24 @@ f_button.addEventListener("click", (event) => {
 
 //add a function to take your word from the word div and add it to an Array to then add to your Words Bank
 
+const wordsBankArray = [];
+let wordCount = 0;
 
+foundTitleH4.innerHTML = `You have found ${wordCount} words!`;
+wordsBankDIV.appendChild(foundTitleH4);
+
+addButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    wordsBankArray.push(wordDIV.innerHTML);
+    console.log("wordBankArray", wordsBankArray);
+    
+    let newWordDIV = document.createElement("div");
+    newWordDIV.setAttribute('id', `${wordCount}`)
+    newWordDIV.classList.add("is-size-2");
+    newWordDIV.innerHTML = wordsBankArray[wordCount];
+    wordsBankDIV.appendChild(newWordDIV);
+    wordCount++;
+    foundTitleH4.innerHTML = `You have found ${wordCount} words!`;
+    wordDIV.innerHTML = "";
+})
 
